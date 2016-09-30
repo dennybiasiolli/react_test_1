@@ -4,6 +4,8 @@
   "description": "My first react project using example from [Facebook](https://facebook.github.io/react/docs/thinking-in-react.html).",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Denny Biasiolli",
