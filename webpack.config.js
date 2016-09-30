@@ -10,10 +10,10 @@ var HTMLWebpackPlugin = new HTMLWebpackPlugin({
 });
 
 module.exports = {
-  entry: __dirname + '/app/index.js',
+  entry: __dirname + '/app/index.jsx',
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx$/,
       exclude: /node_modules/,
       loader: 'babel-loader'
     }]
@@ -25,5 +25,8 @@ module.exports = {
   plugins: [HTMLWebpackPlugin],
   devServer: {
     inline: true
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
   }
 };
