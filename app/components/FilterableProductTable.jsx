@@ -8,11 +8,24 @@ class FilterableProductTable extends React.Component {
   static propTypes = {
     products: React.PropTypes.array.isRequired
   }
-  render(){
+
+  state = {
+    filterText: '',
+    inStockOnly: false
+  }
+
+  render() {
     return (
       <div>
-        <SearchBar />
-        <ProductTable products={this.props.products} />
+        <SearchBar
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+        />
+        <ProductTable
+          products={this.props.products}
+          filterText={this.state.filterText}
+          inStockOnly={this.state.inStockOnly}
+        />
       </div>
     );
   }
