@@ -12,7 +12,7 @@ class ProductTable extends React.Component {
   render() {
     var rows = [];
     var lastCategory = null;
-    this.props.products.forEach(function(product) {
+    this.props.products.forEach((product) => {
       if (product.name.indexOf(this.props.filterText) === -1 || (!product.stocked && this.props.inStockOnly)) {
         return;
       }
@@ -21,7 +21,7 @@ class ProductTable extends React.Component {
       }
       rows.push(<ProductRow product={product} key={product.name} />);
       lastCategory = product.category;
-    }.bind(this));
+    });
     return (
       <table>
         <thead>
