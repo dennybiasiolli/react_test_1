@@ -3,6 +3,7 @@ var React = require('react');
 var PageMove = require('./PageMove');
 var PageScaleType = require('./PageScaleType');
 var PageDisplayed = require('./PageDisplayed');
+var PdfPage = require('./PdfPage');
 
 class PdfReader extends React.Component {
   state = {
@@ -31,6 +32,10 @@ class PdfReader extends React.Component {
   }
 
   render() {
+    let arr = Array.apply(null, {length:this.state.pageDisplayed});
+    let pdfPages = arr.map((elem, index) => {
+      return <PdfPage />;
+    });
     return (
       <div>
         <PageMove
@@ -46,6 +51,7 @@ class PdfReader extends React.Component {
           nPageDisplayed={this.state.pageDisplayed}
           onSelectionChanged={this.handlePageDisplayedChange}
         />
+      {pdfPages}
       </div>
     );
   }
