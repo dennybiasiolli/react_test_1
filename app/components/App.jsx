@@ -68,7 +68,7 @@ class App extends React.Component {
         <h1>My first React app</h1>
         <p>{this.props.prop1}</p>
         <p>{this.props.prop2}</p>
-        <PdfReader />
+        <PdfReader url="document.pdf" />
       </div>
     );
   }

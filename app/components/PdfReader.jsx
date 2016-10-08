@@ -6,11 +6,24 @@ var PageDisplayed = require('./PageDisplayed');
 var PdfPage = require('./PdfPage');
 
 class PdfReader extends React.Component {
+  static propTypes = {
+    url: React.PropTypes.string.isRequired
+  }
   state = {
     currentPage: 1,
     pageCount: 15,
     scaleType: 'page-width',
-    pageDisplayed: 1
+    pageDisplayed: 1,
+    pdfDoc: null
+  }
+
+  getCurrentDoc(){
+    return new Promise((resolve, reject) => {
+      setTimeout(function () {
+        console.log('PDFReader componentDidMount');
+        resolve();
+     }, 1000);
+    });
   }
 
   handlePageChange = (change) => {
@@ -33,11 +46,13 @@ class PdfReader extends React.Component {
 
   render() {
     let arr = Array.apply(null, {length:this.state.pageDisplayed});
+    let pdfPageStyle = {};
     let pdfPages = arr.map((elem, index) => {
-      return <PdfPage />;
+      return <PdfPage key={index} style={pdfPageStyle} />;
     });
     return (
       <div>
+        <p>Opening PDF at {this.props.url}</p>
         <PageMove
           currentPage={this.state.currentPage}
           pageCount={this.state.pageCount}
