@@ -2,6 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var App = require('./components/App');
 
+var App2 = require('./redux')
+
 console.log(`
   **********************************
   ********** First render **********
