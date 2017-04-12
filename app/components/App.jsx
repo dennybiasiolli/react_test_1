@@ -5,6 +5,8 @@ const {
   Header, ListaDiProva, ComportiamociCosì
 } = require('./QualcheProva');
 
+const { Pdf } = require('./Pdf');
+
 var FilterableProductTable = require('./FilterableProductTable');
 
 var PRODUCTS = [
@@ -20,7 +22,8 @@ class App extends React.Component {
   // getDefaultProps()
   static defaultProps = {
     prop1: 'default value',
-    prop2: 123
+    prop2: 123,
+    LOGME: false
   }
   static propTypes = {
     prop1: PropTypes.string.isRequired,
@@ -40,11 +43,11 @@ class App extends React.Component {
    * - componentDidMount()
    */
   componentWillMount() {
-    console.log('componentWillMount');
+    this.props.LOGME && console.log('componentWillMount');
   }
   /* render() happens here */
   componentDidMount() {
-    console.log('componentDidMount');
+    this.props.LOGME && console.log('componentDidMount');
   }
 
   /**
@@ -57,26 +60,26 @@ class App extends React.Component {
    * - componentDidUpdate(prevProps, prevState)
    */
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps', nextProps);
+    this.props.LOGME && console.log('componentWillReceiveProps', nextProps);
   }
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('shouldComponentUpdate', nextProps, nextState);
+    this.props.LOGME && console.log('shouldComponentUpdate', nextProps, nextState);
     return true;
   }
   componentWillUpdate(nextProps, nextState) {
-    console.log('componentWillUpdate', nextProps, nextState);
+    this.props.LOGME && console.log('componentWillUpdate', nextProps, nextState);
   }
   /* render() happens here */
   componentDidUpdate(prevProps, prevState) {
-    console.log('componentDidUpdate', prevProps, prevState);
+    this.props.LOGME && console.log('componentDidUpdate', prevProps, prevState);
   }
 
   componentWillUnmount() {
-    console.log('componentWillUnmount');
+    this.props.LOGME && console.log('componentWillUnmount');
   }
 
   render() {
-    console.log('render');
+    this.props.LOGME && console.log('render');
     return (
       <div>
         {/*<h1>My first React app</h1>
@@ -84,11 +87,29 @@ class App extends React.Component {
         <p>{this.props.prop2}</p>
         <FilterableProductTable products={PRODUCTS} />
         <hr />*/}
-        <Header />
+        {/*<Header />
         <ListaDiProva elenco={[1, 2, 3, 'a', 'b', 'c']} />
         <ComportiamociCosì>
           <b>"<i>bravo me, bravo me, oserei dire bravissimo me</i>"</b>
-        </ComportiamociCosì>
+        </ComportiamociCosì>*/}
+        <Pdf
+          href="example/relativity.pdf"
+          width={400}
+          height={400}
+          onPdfLoaded={(p) => console.log('onPdfLoaded', p)}
+          onPdfLabelsLoaded={(p) => console.log('onPdfLabelsLoaded', p)}
+          onPdfPageLoaded={(p) => console.log('onPdfPageLoaded', p)}
+          onPdfPageRendered={(p) => console.log('onPdfPageRendered', p)}
+        />
+        <Pdf
+          href="example/9788858319611.pdf"
+          width={400}
+          height={400}
+          onPdfLoaded={(p) => console.log('onPdfLoaded', p)}
+          onPdfLabelsLoaded={(p) => console.log('onPdfLabelsLoaded', p)}
+          onPdfPageLoaded={(p) => console.log('onPdfPageLoaded', p)}
+          onPdfPageRendered={(p) => console.log('onPdfPageRendered', p)}
+        />
       </div>
     );
   }
