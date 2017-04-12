@@ -6,7 +6,7 @@ var HTMLWebpackPlugin = new HTMLWebpackPlugin({
   // contain a <script> tag linking to webpack's new JavaScript file.
   // This <script> tag can appear in either the HTML file's <head> or <body>.
   // You choose which one via the inject property.
-  inject: 'body' // or 'head', 
+  inject: 'body' // or 'head',
 });
 
 module.exports = {
@@ -27,6 +27,6 @@ module.exports = {
     inline: true
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   }
 };

@@ -11,8 +11,9 @@
   "author": "Denny Biasiolli",
   "license": "ISC",
   "dependencies": {
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "prop-types": "^15.5.7",
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3"
   },
   "devDependencies": {
     "babel-core": "^6.18.0",
@@ -20,8 +21,8 @@
     "babel-plugin-transform-class-properties": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "html-webpack-plugin": "^2.24.1",
-    "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.1"
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
   },
   "repository": {
     "type": "git",
