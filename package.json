@@ -11,6 +11,7 @@
   "author": "Denny Biasiolli",
   "license": "ISC",
   "dependencies": {
+    "pdfjs-dist": "^1.8.181",
     "prop-types": "^15.5.7",
     "react": "^15.5.3",
     "react-dom": "^15.5.3"
