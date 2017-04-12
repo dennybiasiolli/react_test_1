@@ -1,4 +1,5 @@
 var React = require('react');
+const PropTypes = require('prop-types');
 
 var ProductTable = require('./ProductTable');
 var SearchBar = require('./SearchBar');
@@ -6,7 +7,7 @@ var SearchBar = require('./SearchBar');
 class FilterableProductTable extends React.Component {
   static defaultProps = {}
   static propTypes = {
-    products: React.PropTypes.array.isRequired
+    products: PropTypes.array.isRequired
   }
 
   state = {

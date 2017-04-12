@@ -1,8 +1,9 @@
 var React = require('react');
+const PropTypes = require('prop-types');
 
 class ProductRow extends React.Component {
   static propTypes = {
-    product: React.PropTypes.object.isRequired
+    product: PropTypes.object.isRequired
   }
   render(){
     var name = this.props.product.stocked ?

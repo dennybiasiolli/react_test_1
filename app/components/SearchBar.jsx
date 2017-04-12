@@ -1,10 +1,11 @@
 var React = require('react');
+const PropTypes = require('prop-types');
 
 class SearchBar extends React.Component {
   static propTypes = {
-    filterText: React.PropTypes.string.isRequired,
-    inStockOnly: React.PropTypes.bool.isRequired,
-    onUserInput: React.PropTypes.func.isRequired
+    filterText: PropTypes.string.isRequired,
+    inStockOnly: PropTypes.bool.isRequired,
+    onUserInput: PropTypes.func.isRequired
   }
 
   handleChange = () => {

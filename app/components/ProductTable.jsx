@@ -1,13 +1,14 @@
 var React = require('react');
+const PropTypes = require('prop-types');
 
 var ProductCategoryRow = require('./ProductCategoryRow');
 var ProductRow = require('./ProductRow');
 
 class ProductTable extends React.Component {
   static propTypes = {
-    products: React.PropTypes.array.isRequired,
-    filterText: React.PropTypes.string.isRequired,
-    inStockOnly: React.PropTypes.bool.isRequired
+    products: PropTypes.array.isRequired,
+    filterText: PropTypes.string.isRequired,
+    inStockOnly: PropTypes.bool.isRequired
   }
   render() {
     var rows = [];

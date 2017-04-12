@@ -1,8 +1,9 @@
 var React = require('react');
+const PropTypes = require('prop-types');
 
 class ProductCategoryRow extends React.Component {
   static propTypes = {
-    category: React.PropTypes.string.isRequired
+    category: PropTypes.string.isRequired
   }
   render() {
     return (
