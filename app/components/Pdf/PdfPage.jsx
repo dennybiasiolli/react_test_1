@@ -6,7 +6,7 @@ const { PdfCanvas } = require('./PdfCanvas');
 export class PdfPage extends React.Component {
   static propTypes = {
     pdfDocument: PropTypes.object.isRequired,
-    pageLabels: PropTypes.array,
+    pageIndex: PropTypes.number.isRequired,
     onPdfPageLoaded: PropTypes.func,
     onPdfPageRendered: PropTypes.func
   }
@@ -15,8 +15,12 @@ export class PdfPage extends React.Component {
     isPageLoaded: false
   }
 
-  componentDidMount() {
-    return this.props.pdfDocument.getPage(this.props.pageNumber || 1)
+  getPageNumber() {
+    return (this.props.pageIndex || 0) + 1;
+  }
+
+  _getPdfPage() {
+    return this.props.pdfDocument.getPage(this.getPageNumber())
       .then((page) => {
         this.props.onPdfPageLoaded && this.props.onPdfPageLoaded(page);
         this.setState({
@@ -27,7 +31,18 @@ export class PdfPage extends React.Component {
       });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.props.pdfDocument !== nextProps.pdfDocument || this.props.pageIndex !== nextProps.pageIndex;
+  }
+  componentWillUpdate(nextProps, nextState) {
+    return this._getPdfPage();
+  }
+  componentWillMount() {
+    return this._getPdfPage();
+  }
+
   render() {
+    console.log('render PdfPage', this.props.pageIndex);
     if (this.state.isPageLoaded) {
       return <PdfCanvas
         width={this.props.width}

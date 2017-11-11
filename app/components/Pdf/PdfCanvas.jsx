@@ -37,7 +37,7 @@ export class PdfCanvas extends React.Component {
       const scaleW = desiredWidth / originalViewport.width;
       const scaleH = (desiredHeight || 0) / originalViewport.height;
       const scale = scaleH ? Math.min(scaleW, scaleH) : scaleW;
-      console.log('scaleW', scaleW, 'scaleH', scaleH, 'scale', scale)
+      // console.log('scaleW', scaleW, 'scaleH', scaleH, 'scale', scale)
       return this._getScaledViewport(page, scale);
     } else {
       return originalViewport;

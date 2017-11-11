@@ -32,7 +32,8 @@ class App extends React.Component {
 
   // getInitialState()
   state = {
-    stateProp1: this.props.prop2
+    stateProp1: this.props.prop2,
+    pdfPageIndex: 0
   }
 
   /**
@@ -92,24 +93,31 @@ class App extends React.Component {
         <ComportiamociCosì>
           <b>"<i>bravo me, bravo me, oserei dire bravissimo me</i>"</b>
         </ComportiamociCosì>*/}
-        <Pdf
+        {/*<Pdf
           href="example/relativity.pdf"
+          pageIndex={this.state.pdfPageIndex}
           width={400}
           height={400}
           onPdfLoaded={(p) => console.log('onPdfLoaded', p)}
-          onPdfLabelsLoaded={(p) => console.log('onPdfLabelsLoaded', p)}
+          // onPdfLabelsLoaded={(p) => console.log('onPdfLabelsLoaded', p)}
           onPdfPageLoaded={(p) => console.log('onPdfPageLoaded', p)}
           onPdfPageRendered={(p) => console.log('onPdfPageRendered', p)}
-        />
+        />*/}
         <Pdf
           href="example/9788858319611.pdf"
+          pageIndex={this.state.pdfPageIndex}
           width={400}
           height={400}
           onPdfLoaded={(p) => console.log('onPdfLoaded', p)}
-          onPdfLabelsLoaded={(p) => console.log('onPdfLabelsLoaded', p)}
+          // onPdfLabelsLoaded={(p) => console.log('onPdfLabelsLoaded', p)}
           onPdfPageLoaded={(p) => console.log('onPdfPageLoaded', p)}
           onPdfPageRendered={(p) => console.log('onPdfPageRendered', p)}
         />
+        <button onClick={() => {
+          this.setState({
+            pdfPageIndex: this.state.pdfPageIndex + 1
+          });
+        }}>Click me {this.state.pdfPageIndex}</button>
       </div>
     );
   }

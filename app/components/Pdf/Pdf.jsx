@@ -8,6 +8,7 @@ const { PdfPage } = require('./PdfPage');
 export class Pdf extends React.Component {
   static propTypes = {
     href: PropTypes.string.isRequired,
+    pageIndex: PropTypes.number,
     width: PropTypes.number,
     height: PropTypes.number,
     onPdfLoaded: PropTypes.func,
@@ -21,12 +22,7 @@ export class Pdf extends React.Component {
     numPages: 0
   }
 
-  constructor(props) {
-    super(props);
-    // this.handlePageRendered = this.handlePageRendered.bind(this);
-  }
-
-  componentDidMount() {
+  componentWillMount() {
     return this.props.href && PDFJS.getDocument(this.props.href)
       .then((pdfDocument) => {
         this.props.onPdfLoaded && this.props.onPdfLoaded(pdfDocument);
@@ -44,19 +40,31 @@ export class Pdf extends React.Component {
       });
   }
 
-  handlePageRendered = (pageIndex) => {
-    this.props.onPdfPageRendered && this.props.onPdfPageRendered(pageIndex);
+  _getPageLabel(pageIndex) {
+    if (this.state.pageLabels && this.state.pageLabels[pageIndex]) {
+      return this.state.pageLabels[pageIndex];
+    } else {
+      return pageIndex + 1;
+    }
+  }
+
+  handlePageLoaded = (page) => {
+    this.props.onPdfPageLoaded && this.props.onPdfPageLoaded(
+      Object.assign(page, {
+        pageLabel: this._getPageLabel(page.pageIndex)
+      })
+    );
   }
 
   render() {
     if (this.state.isPdfLoaded) {
       return <PdfPage
+        pageIndex={this.props.pageIndex || 0}
         width={this.props.width}
         height={this.props.height}
         pdfDocument={this.state.pdfDocument}
-        pageLabels={this.state.pageLabels}
-        onPdfPageLoaded={this.props.onPdfPageLoaded}
-        onPdfPageRendered={this.handlePageRendered}
+        onPdfPageLoaded={this.handlePageLoaded}
+        onPdfPageRendered={this.props.onPdfPageRendered}
       />;
     } else {
       return null;
